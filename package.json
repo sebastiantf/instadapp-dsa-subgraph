@@ -5,11 +5,11 @@
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ protofire/instadapp-defi-smart-accounts",
-    "deploy-dev": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ protofire/instadapp-defi-smart-accounts",
-    "create-local": "graph create --node http://localhost:8020/ protofire/instadapp-defi-smart-accounts",
-    "remove-local": "graph remove --node http://localhost:8020/ protofire/instadapp-defi-smart-accounts",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 protofire/instadapp-defi-smart-accounts",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ Instadapp/instadapp-dsa-subgraph",
+    "deploy-dev": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ Instadapp/instadapp-dsa-subgraph",
+    "create-local": "graph create --node http://localhost:8020/ Instadapp/instadapp-dsa-subgraph",
+    "remove-local": "graph remove --node http://localhost:8020/ Instadapp/instadapp-dsa-subgraph",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 Instadapp/instadapp-dsa-subgraph",
     "prepare:mainnet": "mustache config/mainnet.json subgraph.template.yaml > subgraph.yaml && mustache config/mainnet.json src/utils/helpers/instaIndex.template.ts src/utils/helpers/instaIndex.ts",
     "prepare:matic": "mustache config/matic.json subgraph.template.yaml > subgraph.yaml && mustache config/matic.json src/utils/helpers/instaIndex.template.ts src/utils/helpers/instaIndex.ts"
   },
