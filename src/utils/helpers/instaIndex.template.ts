@@ -2,7 +2,7 @@ import {
   User,
   SmartAccount,
   AccountModule,
-  InstaIndex
+  InstaIndex,
 } from "../../../generated/schema";
 import { InstaAccount as AccountTemplate } from "../../../generated/templates";
 import { Address } from "@graphprotocol/graph-ts";
@@ -36,8 +36,8 @@ export function getOrCreateSmartAccount(
     smartAccount = new SmartAccount(id);
 
     smartAccount.shield = false;
-    if(address != null) {
-      AccountTemplate.create(address as Address)
+    if (address != null) {
+      AccountTemplate.create(address as Address);
     }
   }
 
@@ -61,10 +61,10 @@ export function getOrCreateAccountModule(
 }
 
 export function getOrCreateInstaIndex(): InstaIndex {
-  let index = InstaIndex.load("0x2971adfa57b20e5a416ae5a708a8655a9c74f723");
+  let index = InstaIndex.load("{{InstaIndexAddress}}");
 
   if (index == null) {
-    index = new InstaIndex("0x2971adfa57b20e5a416ae5a708a8655a9c74f723");
+    index = new InstaIndex("{{InstaIndexAddress}}");
     index.save();
   }
 
