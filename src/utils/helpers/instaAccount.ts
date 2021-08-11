@@ -14,6 +14,10 @@ export function getOrCreateCast(
 
   if (cast == null && createIfNotFound) {
     cast = new Cast(id);
+    cast.targetsNames = [];
+    cast.targets = [];
+    cast.eventNames = [];
+    cast.eventParams = [];
   }
 
   return cast as Cast;
@@ -27,6 +31,10 @@ export function getOrCreateCastEvent(
 
   if (event == null && createIfNotFound) {
     event = new CastEvent(id);
+    event.targetsNames = [];
+    event.targets = [];
+    event.eventNames = [];
+    event.eventParams = [];
   }
 
   return event as CastEvent;

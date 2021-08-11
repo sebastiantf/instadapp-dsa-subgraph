@@ -134,6 +134,14 @@ type Cast @entity {
 
   value: BigInt!
 
+  targetsNames: [String!]!
+
+  targets: [Bytes!]!
+
+  eventNames: [String!]!
+
+  eventParams: [Bytes!]!
+
   tx_hash: String!
 
   block: BigInt!
@@ -164,6 +172,14 @@ type CastEvent implements SmartAccountEvent @entity {
   sender: Bytes!
 
   value: BigInt!
+
+  targetsNames: [String!]!
+
+  targets: [Bytes!]!
+
+  eventNames: [String!]!
+
+  eventParams: [Bytes!]!
 
   tx_hash: String!
 

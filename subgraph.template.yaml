@@ -122,3 +122,21 @@ templates:
           handler: handleLogEnableSmartAccountOwner
         - event: LogSwitchShield(bool)
           handler: handleLogSwitchShield
+  - name: InstaImplementationM1
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      abi: InstaImplementationM1
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/index.ts
+      entities:
+        - SmartAccount
+      abis:
+        - name: InstaImplementationM1
+          file: ./abis/InstaImplementationM1.json
+      eventHandlers:
+        - event: LogCast(indexed address,indexed address,uint256,string[],address[],string[],bytes[])
+          handler: handleLogCast
