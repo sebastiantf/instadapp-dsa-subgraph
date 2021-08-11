@@ -160,3 +160,32 @@ templates:
           handler: handleLogEnableSmartAccountOwner
         - event: LogDisableUser(indexed address)
           handler: handleLogDisableSmartAccountOwner
+  - name: InstaConnectorsV2
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      abi: InstaConnectorsV2
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/index.ts
+      entities:
+        - InstaConnector
+        - Connector
+      abis:
+        - name: InstaConnectorsV2
+          file: ./abis/InstaConnectorsV2.json
+        - name: Connector
+          file: ./abis/Connector.json
+        - name: InstaList
+          file: ./abis/InstaList.json
+      eventHandlers:
+        - event: LogController(indexed address,indexed bool)
+          handler: handleLogContoller
+        - event: LogConnectorAdded(indexed bytes32,string,indexed address)
+          handler: handleLogConnectorAdded
+        - event: LogConnectorUpdated(indexed bytes32,string,indexed address,indexed address)
+          handler: handleLogConnectorUpdated
+        - event: LogConnectorRemoved(indexed bytes32,string,indexed address)
+          handler: handleLogConnectorRemoved
