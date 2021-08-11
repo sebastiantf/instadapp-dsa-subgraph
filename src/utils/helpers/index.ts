@@ -19,3 +19,8 @@ export {
   getOrCreateCastEvent,
   getOrCreateCast
 } from "./instaAccount";
+
+export {
+  getOrCreateImplementation,
+  getOrCreateInstaImplementation
+} from "./instaImplementations";

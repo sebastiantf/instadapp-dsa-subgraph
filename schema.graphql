@@ -116,6 +116,28 @@ type Connector @entity {
   events: [ConnectorEvent!]! @derivedFrom(field: "connector")
 }
 
+type InstaImplementation @entity {
+  "Address of the InstaImplementation contract. This contract has a list of implementations tracked."
+  id: ID!
+
+  defaultImplementation: Bytes!
+
+  implementations: [Implementation!]! @derivedFrom(field: "instaImplementation")
+}
+
+type Implementation @entity {
+  id: ID!
+
+  "Whether this implementation is enabled or not."
+  isEnabled: Boolean!
+
+  "InstaImplementation contract where this Implementation is linked"
+  instaImplementation: InstaImplementation!
+
+  "Sigs contained by this implementation"
+  sigs: [Bytes!]!
+}
+
 type Chief @entity {
   id: ID!
 

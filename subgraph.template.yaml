@@ -189,3 +189,28 @@ templates:
           handler: handleLogConnectorUpdated
         - event: LogConnectorRemoved(indexed bytes32,string,indexed address)
           handler: handleLogConnectorRemoved
+  - name: InstaImplementations
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      abi: InstaImplementations
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/index.ts
+      entities:
+        - InstaImplementation
+        - Implementation
+      abis:
+        - name: InstaImplementations
+          file: ./abis/InstaImplementations.json
+        - name: InstaIndex
+          file: ./abis/InstaIndex.json
+      eventHandlers:
+        - event: LogSetDefaultImplementation(indexed address,indexed address)
+          handler: handleLogSetDefaultImplementation
+        - event: LogAddImplementation(indexed address,bytes4[])
+          handler: handleLogAddImplementation
+        - event: LogRemoveImplementation(indexed address,bytes4[])
+          handler: handleRemoveImplementation
