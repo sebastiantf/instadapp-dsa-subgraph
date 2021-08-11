@@ -140,3 +140,23 @@ templates:
       eventHandlers:
         - event: LogCast(indexed address,indexed address,uint256,string[],address[],string[],bytes[])
           handler: handleLogCast
+  - name: InstaDefaultImplementation
+    kind: ethereum/contract
+    network: {{network}}
+    source:
+      abi: InstaDefaultImplementation
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/index.ts
+      entities:
+        - SmartAccount
+      abis:
+        - name: InstaDefaultImplementation
+          file: ./abis/InstaDefaultImplementation.json
+      eventHandlers:
+        - event: LogEnableUser(indexed address)
+          handler: handleLogEnableSmartAccountOwner
+        - event: LogDisableUser(indexed address)
+          handler: handleLogDisableSmartAccountOwner
