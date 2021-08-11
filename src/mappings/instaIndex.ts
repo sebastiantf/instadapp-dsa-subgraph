@@ -36,6 +36,12 @@ export function handleLogAccountCreated(event: LogAccountCreated): void {
   );
 
   smartAccount.owner = owner.id;
+  let authorities = smartAccount.authorities;
+  let userIndex = authorities.indexOf(owner.id);
+  if (userIndex == -1) {
+    authorities.push(owner.id);
+  }
+  smartAccount.authorities = authorities;
   smartAccount.creator = sender.id;
   smartAccount.origin = event.params.origin;
   smartAccount.isEnabled = true;
@@ -126,6 +132,12 @@ export function handleBuild(call: BuildCall): void {
   let creator = getOrCreateUser(call.from.toHexString());
 
   smartAccount.owner = owner.id;
+  let authorities = smartAccount.authorities;
+  let userIndex = authorities.indexOf(owner.id);
+  if (userIndex == -1) {
+    authorities.push(owner.id);
+  }
+  smartAccount.authorities = authorities;
   if (!smartAccount.creator) smartAccount.creator = creator.id;
   smartAccount.isEnabled = true;
   if (!smartAccount.accountID) smartAccount.accountID = dsaID;

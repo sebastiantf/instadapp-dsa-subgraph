@@ -39,6 +39,8 @@ export function getOrCreateSmartAccount(
     if (address != null) {
       AccountTemplate.create(address as Address);
     }
+
+    smartAccount.authorities = []
   }
 
   return smartAccount as SmartAccount;

@@ -2,7 +2,7 @@ type User @entity {
   id: ID!
 
   "List of all the smart accounts currently owned by this user"
-  smartAccountsOwned: [SmartAccount!]! @derivedFrom(field:"owner")
+  smartAccountsOwned: [SmartAccount!]! @derivedFrom(field:"authorities")
 
   "List of all the smart accounts created by this user"
   smartAccountsCreated: [SmartAccount!]! @derivedFrom(field:"creator")
@@ -28,6 +28,9 @@ type SmartAccount @entity {
 
   "Account module from which this account was created. It holds the connectors linked to this account."
   accountModule: AccountModule
+
+  "List of all authorities added for the SmartAccount"
+  authorities: [User!]!
 
   shield: Boolean
 

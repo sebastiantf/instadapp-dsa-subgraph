@@ -85,6 +85,12 @@ export function handleLogDisableSmartAccountOwner(event: LogDisable): void {
     disableEvent.logIndex = event.logIndex;
 
     account.owner = user.id;
+    let authorities = account.authorities;
+    let userIndex = authorities.indexOf(user.id);
+    if (userIndex != -1) {
+      authorities.splice(userIndex, 1);
+    }
+    account.authorities = authorities;
     account.isEnabled = false;
 
     account.save();
@@ -118,6 +124,12 @@ export function handleLogEnableSmartAccountOwner(event: LogEnable): void {
     enableEvent.logIndex = event.logIndex;
 
     account.owner = user.id;
+    let authorities = account.authorities;
+    let userIndex = authorities.indexOf(user.id);
+    if (userIndex == -1) {
+      authorities.push(user.id);
+    }
+    account.authorities = authorities;
     account.isEnabled = true;
 
     account.save();
