@@ -20,6 +20,8 @@ type SmartAccount @entity {
 
   origin: Bytes!
 
+  version: BigInt!
+
   "AccountID as BigInt according to the InstaList contract"
   accountID: BigInt!
 

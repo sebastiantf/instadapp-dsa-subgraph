@@ -27,6 +27,7 @@ export function handleLogAccountCreated(event: LogAccountCreated): void {
   let owner = getOrCreateUser(event.params.owner.toHexString());
   let sender = getOrCreateUser(event.params.sender.toHexString());
   let index = getOrCreateInstaIndex();
+  let version = InstaIndex.bind(event.address).versionCount();
   let instaListContract = InstaList.bind(index.instaListAddress as Address);
   let dsaID = instaListContract.accountID(event.params.account);
   let smartAccount = getOrCreateSmartAccount(
@@ -44,6 +45,7 @@ export function handleLogAccountCreated(event: LogAccountCreated): void {
   smartAccount.authorities = authorities;
   smartAccount.creator = sender.id;
   smartAccount.origin = event.params.origin;
+  smartAccount.version = version;
   smartAccount.isEnabled = true;
   smartAccount.accountID = dsaID;
   smartAccount.address = event.params.account;
@@ -139,6 +141,7 @@ export function handleBuild(call: BuildCall): void {
   }
   smartAccount.authorities = authorities;
   if (!smartAccount.creator) smartAccount.creator = creator.id;
+  if (!smartAccount.version) smartAccount.version = call.inputs.accountVersion;
   smartAccount.isEnabled = true;
   if (!smartAccount.accountID) smartAccount.accountID = dsaID;
   if (!smartAccount.address) smartAccount.address = call.outputs._account;
