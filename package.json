@@ -14,8 +14,8 @@
     "prepare:matic": "mustache config/matic.json subgraph.template.yaml > subgraph.yaml && mustache config/matic.json src/utils/helpers/instaIndex.template.ts src/utils/helpers/instaIndex.ts"
   },
   "dependencies": {
-    "@graphprotocol/graph-cli": "0.18.0",
-    "@graphprotocol/graph-ts": "0.18.0",
+    "@graphprotocol/graph-cli": "0.20.1",
+    "@graphprotocol/graph-ts": "0.20.1",
     "mustache": "^4.2.0"
   }
 }
