@@ -123,8 +123,13 @@ export function handleBuild(call: BuildCall): void {
     call.outputs._account as Address
   );
   let owner = getOrCreateUser(call.inputs._owner.toHexString());
+  let creator = getOrCreateUser(call.from.toHexString());
 
   smartAccount.owner = owner.id;
+  if (!smartAccount.creator) smartAccount.creator = creator.id;
+  smartAccount.isEnabled = true;
+  if (!smartAccount.accountID) smartAccount.accountID = dsaID;
+  if (!smartAccount.address) smartAccount.address = call.outputs._account;
   smartAccount.origin = call.inputs._origin;
   smartAccount.accountModule = call.inputs.accountVersion.toString();
 
