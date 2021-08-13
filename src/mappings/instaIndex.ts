@@ -140,12 +140,12 @@ export function handleBuild(call: BuildCall): void {
     authorities.push(owner.id);
   }
   smartAccount.authorities = authorities;
-  if (!smartAccount.creator) smartAccount.creator = creator.id;
-  if (!smartAccount.version) smartAccount.version = call.inputs.accountVersion;
-  smartAccount.isEnabled = true;
-  if (!smartAccount.accountID) smartAccount.accountID = dsaID;
-  if (!smartAccount.address) smartAccount.address = call.outputs._account;
+  smartAccount.creator = creator.id;
   smartAccount.origin = call.inputs._origin;
+  smartAccount.version = call.inputs.accountVersion;
+  smartAccount.isEnabled = true;
+  smartAccount.accountID = dsaID;
+  smartAccount.address = call.outputs._account;
   smartAccount.accountModule = call.inputs.accountVersion.toString();
 
   smartAccount.save();
