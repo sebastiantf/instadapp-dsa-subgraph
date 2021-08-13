@@ -75,15 +75,15 @@ export function handleLogConnectorUpdated(event: LogConnectorUpdated): void {
     .toString()
     .concat("-")
     .concat(newConnectorIDResult.value0.toString());
-  let newConnector = getOrCreateConnector(oldEntityId);
+  let newConnector = getOrCreateConnector(newEntityId);
 
   newConnector.isEnabled = true;
   newConnector.isStatic = false;
   newConnector.instaConnector = event.address.toHexString();
   newConnector.name = oldContract.name();
   newConnector.address = event.params.newConnector;
-  newConnector.connectorType = oldConnectorIDResult.value0;
-  newConnector.connectorID = oldConnectorIDResult.value1;
+  newConnector.connectorType = newConnectorIDResult.value0;
+  newConnector.connectorID = newConnectorIDResult.value1;
 
   newConnector.save();
 }
