@@ -122,11 +122,11 @@ templates:
           handler: handleLogEnableSmartAccountOwner
         - event: LogSwitchShield(bool)
           handler: handleLogSwitchShield
-  - name: InstaImplementationM1
+  - name: InstaAccountV2
     kind: ethereum/contract
     network: {{network}}
     source:
-      abi: InstaImplementationM1
+      abi: InstaAccountV2
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -135,31 +135,17 @@ templates:
       entities:
         - SmartAccount
       abis:
-        - name: InstaImplementationM1
-          file: ./abis/InstaImplementationM1.json
+        - name: InstaAccountV2
+          file: ./abis/InstaAccountV2.json
+        - name: InstaList
+          file: ./abis/InstaList.json
       eventHandlers:
         - event: LogCast(indexed address,indexed address,uint256,string[],address[],string[],bytes[])
-          handler: handleLogCast
-  - name: InstaDefaultImplementation
-    kind: ethereum/contract
-    network: {{network}}
-    source:
-      abi: InstaDefaultImplementation
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.4
-      language: wasm/assemblyscript
-      file: ./src/index.ts
-      entities:
-        - SmartAccount
-      abis:
-        - name: InstaDefaultImplementation
-          file: ./abis/InstaDefaultImplementation.json
-      eventHandlers:
+          handler: handleLogCastV2
         - event: LogEnableUser(indexed address)
-          handler: handleLogEnableSmartAccountOwner
+          handler: handleLogEnableSmartAccountOwnerV2
         - event: LogDisableUser(indexed address)
-          handler: handleLogDisableSmartAccountOwner
+          handler: handleLogDisableSmartAccountOwnerV2
   - name: InstaConnectorsV2
     kind: ethereum/contract
     network: {{network}}

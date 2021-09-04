@@ -24,6 +24,11 @@ export {
   handleLogCast
 } from "./mappings/instaAccount";
 
+export {
+  handleLogCastV2,
+  handleLogEnableSmartAccountOwnerV2,
+  handleLogDisableSmartAccountOwnerV2
+} from "./mappings/instaAccountV2"
 
 export {
   handleLogSetDefaultImplementation,

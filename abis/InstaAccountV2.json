@@ -1,21 +1,5 @@
 [
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_instaIndex",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_connectors",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-  },
-  {
     "anonymous": false,
     "inputs": [
       {
@@ -65,49 +49,29 @@
     "type": "event"
   },
   {
+    "anonymous": false,
     "inputs": [
       {
-        "internalType": "string[]",
-        "name": "_targetNames",
-        "type": "string[]"
-      },
-      {
-        "internalType": "bytes[]",
-        "name": "_datas",
-        "type": "bytes[]"
-      },
-      {
+        "indexed": true,
         "internalType": "address",
-        "name": "_origin",
+        "name": "user",
         "type": "address"
       }
     ],
-    "name": "cast",
-    "outputs": [
-      {
-        "internalType": "bytes32",
-        "name": "",
-        "type": "bytes32"
-      }
-    ],
-    "stateMutability": "payable",
-    "type": "function"
+    "name": "LogDisableUser",
+    "type": "event"
   },
   {
-    "inputs": [],
-    "name": "connectorsM1",
-    "outputs": [
+    "anonymous": false,
+    "inputs": [
       {
+        "indexed": true,
         "internalType": "address",
-        "name": "",
+        "name": "user",
         "type": "address"
       }
     ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "stateMutability": "payable",
-    "type": "receive"
+    "name": "LogEnableUser",
+    "type": "event"
   }
 ]
