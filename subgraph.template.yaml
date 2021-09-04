@@ -213,4 +213,4 @@ templates:
         - event: LogAddImplementation(indexed address,bytes4[])
           handler: handleLogAddImplementation
         - event: LogRemoveImplementation(indexed address,bytes4[])
-          handler: handleRemoveImplementation
+          handler: handleLogRemoveImplementation

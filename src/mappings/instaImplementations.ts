@@ -34,9 +34,9 @@ export function handleLogAddImplementation(event: LogAddImplementation): void {
 }
 
 // - event: LogRemoveImplementation(address indexed implementation, bytes4[] sigs);
-//   handler: handleRemoveImplementation
+//   handler: handleLogRemoveImplementation
 
-export function handleRemoveImplementation(event: LogRemoveImplementation): void {
+export function handleLogRemoveImplementation(event: LogRemoveImplementation): void {
   let implementation = getOrCreateImplementation(event.params.implementation.toHexString());
 
   implementation.isEnabled = false;

@@ -23,3 +23,10 @@ export {
   handleLogSwitchShield,
   handleLogCast
 } from "./mappings/instaAccount";
+
+
+export {
+  handleLogSetDefaultImplementation,
+  handleLogAddImplementation,
+  handleLogRemoveImplementation
+} from "./mappings/instaImplementations"
