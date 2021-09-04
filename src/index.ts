@@ -18,6 +18,13 @@ export {
 } from "./mappings/instaConnectors";
 
 export {
+  handleLogContoller,
+  handleLogConnectorAdded,
+  handleLogConnectorUpdated,
+  handleLogConnectorRemoved
+} from "./mappings/instaConnectorsV2"
+
+export {
   handleLogEnableSmartAccountOwner,
   handleLogDisableSmartAccountOwner,
   handleLogSwitchShield,
