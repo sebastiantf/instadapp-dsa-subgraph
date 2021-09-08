@@ -18,7 +18,7 @@ export {
 } from "./mappings/instaConnectors";
 
 export {
-  handleLogContoller,
+  handleLogController,
   handleLogConnectorAdded,
   handleLogConnectorUpdated,
   handleLogConnectorRemoved

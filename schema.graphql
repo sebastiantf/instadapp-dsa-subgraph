@@ -136,6 +136,9 @@ type Implementation @entity {
 
   "Sigs contained by this implementation"
   sigs: [Bytes!]!
+
+  "ConnectorsM1 address"
+  connectorsM1: Bytes
 }
 
 type Chief @entity {

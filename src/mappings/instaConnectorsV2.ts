@@ -12,9 +12,9 @@ import {
 
 
 // - event LogController(address indexed addr, bool indexed isChief)
-//   handler: handleLogContoller
+//   handler: handleLogController
 
-export function handleLogContoller(event: LogController): void {
+export function handleLogController(event: LogController): void {
   let chief = getOrCreateChief(event.params.addr.toHexString());
 
   chief.isActive = event.params.isChief;

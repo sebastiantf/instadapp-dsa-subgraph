@@ -8,6 +8,9 @@ import {
   getOrCreateImplementation,
   getOrCreateInstaImplementation
 } from "../utils/helpers";
+import { Implementation } from "../../generated/templates/InstaImplementations/Implementation";
+import { getOrCreateInstaConnectorV2 } from "../utils/helpers/instaConnectorsV2";
+import { Address, log } from "@graphprotocol/graph-ts";
 
 
 // - event LogSetDefaultImplementation(address indexed oldImplementation, address indexed newImplementation);
@@ -31,6 +34,15 @@ export function handleLogAddImplementation(event: LogAddImplementation): void {
   implementation.sigs = event.params.sigs;
 
   implementation.save();
+
+  let implementationContract = Implementation.bind(event.params.implementation);
+  let connectorsAddress = implementationContract.try_connectorsM1();
+  if (!connectorsAddress.reverted) {
+    let instaConnector = getOrCreateInstaConnectorV2(connectorsAddress.value);
+    instaConnector.save();
+    implementation.connectorsM1 = connectorsAddress.value;
+    implementation.save();
+  }
 }
 
 // - event: LogRemoveImplementation(address indexed implementation, bytes4[] sigs);
