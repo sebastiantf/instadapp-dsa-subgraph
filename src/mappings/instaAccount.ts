@@ -16,7 +16,7 @@ import {
   getOrCreateUser,
   getOrCreateInstaIndex
 } from "../utils/helpers";
-import { log, Bytes, Address } from "@graphprotocol/graph-ts";
+import { log, Bytes, Address, BigInt } from "@graphprotocol/graph-ts";
 
 //- event: LogCast(indexed address,indexed address,uint256)
 //   handler: handleLogCast
@@ -25,7 +25,7 @@ export function handleLogCast(event: LogCast): void {
   let instaIndex = getOrCreateInstaIndex();
   let instaListContract = InstaList.bind(instaIndex.instaListAddress as Address);
   let accountID = instaListContract.accountID(event.address);
-  let account = getOrCreateSmartAccount(accountID.toString(), false);
+  let account = getOrCreateSmartAccount(accountID.toString(), BigInt.fromString('1'), false);
   if (account == null) {
     log.error("LOGCAST - Indexed address for smart account is wrong? {}", [
       accountID.toString()
@@ -66,7 +66,7 @@ export function handleLogDisableSmartAccountOwner(event: LogDisable): void {
   let instaIndex = getOrCreateInstaIndex();
   let instaListContract = InstaList.bind(instaIndex.instaListAddress as Address);
   let accountID = instaListContract.accountID(event.address);
-  let account = getOrCreateSmartAccount(accountID.toString(), false);
+  let account = getOrCreateSmartAccount(accountID.toString(), BigInt.fromString('1'), false);
   if (account == null) {
     log.error("DISABLE - Indexed address for smart account is wrong? {}", [
       accountID.toString()
@@ -105,7 +105,7 @@ export function handleLogEnableSmartAccountOwner(event: LogEnable): void {
   let instaIndex = getOrCreateInstaIndex();
   let instaListContract = InstaList.bind(instaIndex.instaListAddress as Address);
   let accountID = instaListContract.accountID(event.address);
-  let account = getOrCreateSmartAccount(accountID.toString(), false);
+  let account = getOrCreateSmartAccount(accountID.toString(), BigInt.fromString('1'), false);
   if (account == null) {
     log.error("ENABLE - Indexed address for smart account is wrong? {}", [
       accountID.toString()
@@ -144,7 +144,7 @@ export function handleLogSwitchShield(event: LogSwitchShield): void {
   let instaIndex = getOrCreateInstaIndex();
   let instaListContract = InstaList.bind(instaIndex.instaListAddress as Address);
   let accountID = instaListContract.accountID(event.address);
-  let account = getOrCreateSmartAccount(accountID.toString(), false);
+  let account = getOrCreateSmartAccount(accountID.toString(), BigInt.fromString('1'), false);
   if (account == null) {
     log.error(
       "SWITCH SHIELD - Indexed address for smart account is wrong? {}",

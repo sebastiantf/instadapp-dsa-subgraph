@@ -34,6 +34,7 @@ export function handleLogAccountCreated(event: LogAccountCreated): void {
   let dsaID = instaListContract.accountID(event.params.account);
   let smartAccount = getOrCreateSmartAccount(
     dsaID.toString(),
+    version,
     true,
     event.params.account as Address
   );
@@ -135,6 +136,7 @@ export function handleBuild(call: BuildCall): void {
   let dsaID = instaListContract.accountID(call.outputs._account);
   let smartAccount = getOrCreateSmartAccount(
     dsaID.toString(),
+    call.inputs.accountVersion,
     true,
     call.outputs._account as Address
   );

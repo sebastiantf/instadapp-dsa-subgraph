@@ -13,7 +13,7 @@ import {
   getOrCreateCast,
   getOrCreateCastEvent,
 } from "../utils/helpers";
-import { log, Address, Bytes } from "@graphprotocol/graph-ts";
+import { log, Address, Bytes, BigInt } from "@graphprotocol/graph-ts";
 
 
 // - event LogCast(address indexed origin,address indexed sender,uint256 value,string[] targetsNames,address[] targets,string[] eventNames,bytes[] eventParams);
@@ -23,7 +23,7 @@ export function handleLogCastV2(event: LogCast): void {
   let instaIndex = getOrCreateInstaIndex();
   let instaListContract = InstaList.bind(instaIndex.instaListAddress as Address);
   let accountID = instaListContract.accountID(event.address);
-  let account = getOrCreateSmartAccount(accountID.toString(), false);
+  let account = getOrCreateSmartAccount(accountID.toString(), BigInt.fromString('2'), false);
   if (account == null) {
     log.error("LOGCAST - Indexed address for smart account is wrong? {}", [
       accountID.toString()
@@ -72,7 +72,7 @@ export function handleLogDisableSmartAccountOwnerV2(event: LogDisableUser): void
   let instaIndex = getOrCreateInstaIndex();
   let instaListContract = InstaList.bind(instaIndex.instaListAddress as Address);
   let accountID = instaListContract.accountID(event.address);
-  let account = getOrCreateSmartAccount(accountID.toString(), false);
+  let account = getOrCreateSmartAccount(accountID.toString(), BigInt.fromString('2'), false);
   if (account == null) {
     log.error("DISABLE - Indexed address for smart account is wrong? {}", [
       accountID.toString()
@@ -111,7 +111,7 @@ export function handleLogEnableSmartAccountOwnerV2(event: LogEnableUser): void {
   let instaIndex = getOrCreateInstaIndex();
   let instaListContract = InstaList.bind(instaIndex.instaListAddress as Address);
   let accountID = instaListContract.accountID(event.address);
-  let account = getOrCreateSmartAccount(accountID.toString(), false);
+  let account = getOrCreateSmartAccount(accountID.toString(), BigInt.fromString('2'), false);
   if (account == null) {
     log.error("ENABLE - Indexed address for smart account is wrong? {}", [
       accountID.toString()

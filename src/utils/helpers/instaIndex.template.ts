@@ -4,8 +4,8 @@ import {
   AccountModule,
   InstaIndex,
 } from "../../../generated/schema";
-import { InstaAccount as AccountTemplate } from "../../../generated/templates";
-import { Address } from "@graphprotocol/graph-ts";
+import { InstaAccount as AccountTemplate, InstaAccountV2 as AccountTemplateV2 } from "../../../generated/templates";
+import { Address, BigInt } from "@graphprotocol/graph-ts";
 
 export function getOrCreateUser(
   id: String,
@@ -27,6 +27,7 @@ export function getOrCreateUser(
 
 export function getOrCreateSmartAccount(
   id: String,
+  version: BigInt,
   createIfNotFound: boolean = true,
   address: Address | null = null
 ): SmartAccount {
@@ -37,7 +38,12 @@ export function getOrCreateSmartAccount(
 
     smartAccount.shield = false;
     if (address != null) {
-      AccountTemplate.create(address as Address);
+      if (version == BigInt.fromString('1'))
+        AccountTemplate.create(address as Address);
+      if (version == BigInt.fromString('2'))
+        AccountTemplateV2.create(address as Address);
+      else
+        AccountTemplate.create(address as Address);
     }
 
     smartAccount.authorities = []
