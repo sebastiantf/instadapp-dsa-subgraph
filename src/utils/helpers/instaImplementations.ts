@@ -5,17 +5,17 @@ import { Address } from "@graphprotocol/graph-ts";
 export function getOrCreateInstaImplementation(
   addressId: Address
 ): InstaImplementation {
-  let connectors = InstaImplementation.load(addressId.toHexString());
+  let instaImplementations = InstaImplementation.load(addressId.toHexString());
 
-  if (connectors == null) {
-    connectors = new InstaImplementation(addressId.toHexString());
+  if (instaImplementations == null) {
+    instaImplementations = new InstaImplementation(addressId.toHexString());
 
-    connectors.save();
+    instaImplementations.save();
 
     ImplementationsTemplate.create(addressId);
   }
 
-  return connectors as InstaImplementation;
+  return instaImplementations as InstaImplementation;
 }
 
 export function getOrCreateImplementation(

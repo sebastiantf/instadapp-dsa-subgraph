@@ -9,14 +9,16 @@ import {
   InstaIndex
 } from "../../generated/InstaIndex/InstaIndex";
 import { InstaList } from "../../generated/InstaIndex/InstaList";
-import { Address } from "@graphprotocol/graph-ts";
+import { Address, BigInt } from "@graphprotocol/graph-ts";
 import {
   getOrCreateAccountModule,
   getOrCreateUser,
   getOrCreateSmartAccount,
   getOrCreateInstaConnector,
-  getOrCreateInstaIndex
+  getOrCreateInstaIndex,
+  getOrCreateInstaImplementation
 } from "../utils/helpers";
+import { InstaAccountV2 } from "../../generated/templates/InstaAccountV2/InstaAccountV2";
 
 // - event: LogAccountCreated(address,indexed address,indexed address,indexed address)
 //   handler: handleLogAccountCreated
@@ -51,6 +53,12 @@ export function handleLogAccountCreated(event: LogAccountCreated): void {
   smartAccount.address = event.params.account;
 
   smartAccount.save();
+
+  if (smartAccount.version == BigInt.fromString("2")) {
+    let instaImplementationsAddress = InstaAccountV2.bind(smartAccount.address as Address).implementations();
+    let instaImplementations = getOrCreateInstaImplementation(instaImplementationsAddress);
+    instaImplementations.save();
+  }
 }
 
 // - event: LogNewAccount(indexed address,indexed address,indexed address)
@@ -149,4 +157,10 @@ export function handleBuild(call: BuildCall): void {
   smartAccount.accountModule = call.inputs.accountVersion.toString();
 
   smartAccount.save();
+
+  if (smartAccount.version == BigInt.fromString("2")) {
+    let instaImplementationsAddress = InstaAccountV2.bind(smartAccount.address as Address).implementations();
+    let instaImplementations = getOrCreateInstaImplementation(instaImplementationsAddress);
+    instaImplementations.save();
+  }
 }
