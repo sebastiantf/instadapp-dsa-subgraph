@@ -24,6 +24,8 @@ dataSources:
           file: ./abis/InstaIndex.json
         - name: InstaList
           file: ./abis/InstaList.json
+        - name: InstaAccountV2
+          file: ./abis/InstaAccountV2.json
       eventHandlers:
         - event: LogAccountCreated(address,indexed address,indexed address,indexed address)
           handler: handleLogAccountCreated
